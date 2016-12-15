@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Camera;
 import android.graphics.Canvas;
 import android.graphics.CornerPathEffect;
@@ -24,6 +25,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 
+import com.gastudio.gadownloading.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,22 +37,21 @@ import java.util.List;
  */
 public class GADownloadingView extends View {
 
-    public static final int ZERO_PROGRESS = 0;
-    public static final int FULL_PROGRESS = 100;
-    public static final int HALF_PROGRESS = 50;
-    public static final int INVALID_PROGRESS = -1;
-
+    private static final int ZERO_PROGRESS = 0;
+    private static final int FULL_PROGRESS = 100;
+    private static final int HALF_PROGRESS = 50;
+    private static final int INVALID_PROGRESS = -1;
     private static final float FULL_NORMALIZED_TIME = 1F;
 
-    public static final float FULL_NORMALIZED_PROGRESS = 1F;
-    public static final float HALF_NORMALIZED_PROGRESS = 0.5F;
-    public static final String FULL_PROGRESS_STR = "100%";
-    public static final String FULL_PROGRESS_DONE_STR = "done";
-    public static final String FAILED_PROGRESS_STR = "failed";
+    private static final float FULL_NORMALIZED_PROGRESS = 1F;
+    private static final float HALF_NORMALIZED_PROGRESS = 0.5F;
+    private static final String FULL_PROGRESS_STR = "100%";
+    private static final String FULL_PROGRESS_DONE_STR = "done";
+    private static final String FAILED_PROGRESS_STR = "failed";
 
-    public static final int FULL_ALPHA = 255;
-    public static final int FULL_ANGLE = 360;
-    public static final int HALF_FULL_ANGLE = FULL_ANGLE / 2;
+    private static final int FULL_ALPHA = 255;
+    private static final int FULL_ANGLE = 360;
+    private static final int HALF_FULL_ANGLE = FULL_ANGLE / 2;
 
     private static final int DEFAULT_ARROW_COLOR = 0xFFFFFFFF;
     private static final int DEFAULT_LOADING_CIRCLE_BG_COLOR = 0xFF491C14;
@@ -66,15 +68,15 @@ public class GADownloadingView extends View {
     private static final int BEFORE_PROGRESS_CIRCLE_TO_LINE_DURATION = 150;
     private static final int BEFORE_PROGRESS_ARROW_MOVE_AND_LINE_OSCILL = 800;
 
-    public static final float CIRCLE_TO_LINE_SEASON_1 = 0.4f;
-    public static final float CIRCLE_TO_LINE_SEASON_2 = 0.8f;
-    public static final float CIRCLE_TO_LINE_SEASON_3 = 1f;
-    public static final float[] CIRCLE_TO_LINE_WIDTH_FACTOR = new float[]{1f, 1.2f, 2.4f, 3.45f};
-    public static final float[] CIRCLE_TO_LINE_HEIGHT_FACTOR = new float[]{1f, 0.73f, 0.36f, 0f};
-    public static final float[] CIRCLE_TO_LINE_FST_CON_X_FACTOR = new float[]{-0.65f, 0.18f, 0.72f, 1.04f};
-    public static final float[] CIRCLE_TO_LINE_FST_CON_Y_FACTOR = new float[]{0f, 0.036f, 0f, 0f};
-    public static final float[] CIRCLE_TO_LINE_SEC_CON_X_FACTOR = new float[]{-0.65f, 0.06f, 0.72f, 1.04f};
-    public static final float[] CIRCLE_TO_LINE_SEC_CON_Y_FACTOR = new float[]{1f, 0.73f, 0.36f, 0f};
+    private static final float CIRCLE_TO_LINE_SEASON_1 = 0.4f;
+    private static final float CIRCLE_TO_LINE_SEASON_2 = 0.8f;
+    private static final float CIRCLE_TO_LINE_SEASON_3 = 1f;
+    private static final float[] CIRCLE_TO_LINE_WIDTH_FACTOR = new float[]{1f, 1.2f, 2.4f, 3.45f};
+    private static final float[] CIRCLE_TO_LINE_HEIGHT_FACTOR = new float[]{1f, 0.73f, 0.36f, 0f};
+    private static final float[] CIRCLE_TO_LINE_FST_CON_X_FACTOR = new float[]{-0.65f, 0.18f, 0.72f, 1.04f};
+    private static final float[] CIRCLE_TO_LINE_FST_CON_Y_FACTOR = new float[]{0f, 0.036f, 0f, 0f};
+    private static final float[] CIRCLE_TO_LINE_SEC_CON_X_FACTOR = new float[]{-0.65f, 0.06f, 0.72f, 1.04f};
+    private static final float[] CIRCLE_TO_LINE_SEC_CON_Y_FACTOR = new float[]{1f, 0.73f, 0.36f, 0f};
     // value of MAX_LINE_WIDTH_FACTOR is max value in CIRCLE_TO_LINE_WIDTH_FACTOR array
     public static final float MAX_LINE_WIDTH_FACTOR = 3.45f;
 
@@ -92,7 +94,6 @@ public class GADownloadingView extends View {
 
 
     private static final int DONE_LINE_PACK_UP_ARROW_SHAKE_BASE_POINT_DIAMETER = 2;
-
     private static final int FAILED_ANIMATION_DURATION = 1000;
     private static final int FAILED_BOMB_ANIMATION_DURATION =
             FAILED_ANIMATION_DURATION / 3;
@@ -104,13 +105,13 @@ public class GADownloadingView extends View {
             (FAILED_ARROW_MOVE_ANIMATION_DURATION - FAILED_ROPE_OSCILLATION_ANIMATION_DURATION) / 2;
 
     // state of arrow's rectangle and triangle
-    public static final float DEFAULT_INIT_ARROW_RECT_WIDTH_TO_CIRCLE_RADIUS_RATIO = 0.5F;
-    public static final float DEFAULT_INIT_ARROW_RECT_HEIGHT_TO_CIRCLE_RADIUS_RATIO = 0.5F;
-    public static final float DEFAULT_INIT_ARROW_TRI_WIDTH_TO_CIRCLE_RADIUS_RATIO = 1F;
-    public static final float DEFAULT_INIT_ARROW_TRI_HEIGHT_TO_CIRCLE_RADIUS_RATIO = 0.5F;
+    private static final float DEFAULT_INIT_ARROW_RECT_WIDTH_TO_CIRCLE_RADIUS_RATIO = 0.5F;
+    private static final float DEFAULT_INIT_ARROW_RECT_HEIGHT_TO_CIRCLE_RADIUS_RATIO = 0.5F;
+    private static final float DEFAULT_INIT_ARROW_TRI_WIDTH_TO_CIRCLE_RADIUS_RATIO = 1F;
+    private static final float DEFAULT_INIT_ARROW_TRI_HEIGHT_TO_CIRCLE_RADIUS_RATIO = 0.5F;
     private static final float DEFAULT_MIDDLE_ARROW_RECT_HEIGHT_TO_CIRCLE_RADIUS_RATIO = 0.7F;
     private static final float DEFAULT_END_ARROW_RECT_WIDTH_TO_CIRCLE_RADIUS_RATIO = 1F;
-    public static final float DEFAULT_END_ARROW_RECT_HEIGHT_TO_CIRCLE_RADIUS_RATIO = 0.5F;
+    private static final float DEFAULT_END_ARROW_RECT_HEIGHT_TO_CIRCLE_RADIUS_RATIO = 0.5F;
     private static final float DEFAULT_END_ARROW_TRI_WIDTH_TO_CIRCLE_RADIUS_RATIO = 0.34F;
     private static final float DEFAULT_END_ARROW_TRI_HEIGHT_TO_CIRCLE_RADIUS_RATIO = 0.17F;
     private static final float DEFAULT_ARROW_TOP_CONNER_RADIUS_TO_CIRCLE_RADIUS_RATIO = 0.05f;
@@ -149,7 +150,6 @@ public class GADownloadingView extends View {
 
     private static final float DEFAULT_PROGRESS_MAX_HEIGHT_TO_BASELINE_RATIO = 0.1F;
     private static final float DEFAULT_LINE_OSCILLATION_MAX_HEIGHT_TO_BASELINE_RATIO = 0.15F;
-
     private static final float ARROW_BOUNCE_LENGTH_RATIO = 0.2F;
     private static final float ARROW_BOUNCE_LENGTH_RATIO_2 = 0.1F;
 
@@ -160,7 +160,6 @@ public class GADownloadingView extends View {
     private static final int STATE_BEFORE_PROGRESS_ARROW_MOVE_LINE_OSCILL = 4;
 
     private static final int STATE_IN_PROGRESS = 5;
-
     private static final int STATE_DONE_ROTATE = 6;
     private static final int STATE_DONE_LINE_PACK_UP = 7;
     private static final int STATE_DONE_ARROW_SHAKE = 8;
@@ -311,6 +310,12 @@ public class GADownloadingView extends View {
     private Path mFailedBombPathBellow;
 
     private int mCurrentState;
+    private int mArrowColor = DEFAULT_ARROW_COLOR;
+    private int mLoadingCircleBackColor = DEFAULT_LOADING_CIRCLE_BG_COLOR;
+    private int mLoadingLineColor = DEFAULT_LOADING_LINE_COLOR;
+    private int mProgressLineColor = DEFAULT_PROGRESS_LINE_LEFT_COLOR;
+    private int mProgressTextColor = DEFAULT_PROGRESS_TEXT_COLOR;
+    private int mDoneTextColor = DEFAULT_DONE_PROGRESS_TEXT_COLOR;
 
     public GADownloadingView(Context context) {
         this(context, null);
@@ -322,6 +327,17 @@ public class GADownloadingView extends View {
 
     public GADownloadingView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs,
+                R.styleable.GADownloadingView, defStyleAttr, 0);
+        mArrowColor = typedArray.getColor(R.styleable.GADownloadingView_arrow_color, DEFAULT_ARROW_COLOR);
+        mLoadingCircleBackColor = typedArray.getColor(R.styleable.GADownloadingView_loading_circle_back_color, DEFAULT_LOADING_CIRCLE_BG_COLOR);
+        mLoadingLineColor = typedArray.getColor(R.styleable.GADownloadingView_loading_line_color, DEFAULT_LOADING_LINE_COLOR);
+        mProgressLineColor = typedArray.getColor(R.styleable.GADownloadingView_progress_line_color, DEFAULT_PROGRESS_LINE_LEFT_COLOR);
+        mProgressTextColor = typedArray.getColor(R.styleable.GADownloadingView_progress_text_color, DEFAULT_PROGRESS_TEXT_COLOR);
+        mDoneTextColor = typedArray.getColor(R.styleable.GADownloadingView_done_text_color, DEFAULT_DONE_PROGRESS_TEXT_COLOR);
+
+        typedArray.recycle();
+
         init();
     }
 
@@ -347,7 +363,7 @@ public class GADownloadingView extends View {
         mLastValidProgressTextStr = "";
         mLastValidProgress = INVALID_PROGRESS;
         mProgressTextPaint = new Paint();
-        mProgressTextPaint.setColor(DEFAULT_PROGRESS_TEXT_COLOR);
+        mProgressTextPaint.setColor(mProgressTextColor);
         mProgressTextPaint.setAntiAlias(true);
         mProgressTextRect = new Rect();
 
@@ -545,7 +561,7 @@ public class GADownloadingView extends View {
             mFailedBombPaint = new Paint();
             mFailedBombPaint.setStrokeWidth(mBaseLineStrokeWidth);
             mFailedBombPaint.setAntiAlias(true);
-            mFailedBombPaint.setColor(DEFAULT_PROGRESS_LINE_LEFT_COLOR);
+            mFailedBombPaint.setColor(mProgressLineColor);
             mFailedBombPaint.setStyle(Paint.Style.STROKE);
 
             mFailedBombPaint.setPathEffect(new PathDashPathEffect(circle,
@@ -602,7 +618,7 @@ public class GADownloadingView extends View {
     }
 
     private void drawBeforeProgressCircleToLine(Canvas canvas, float normalizeTime) {
-        mBaseLinePaint.setColor(DEFAULT_LOADING_LINE_COLOR);
+        mBaseLinePaint.setColor(mLoadingLineColor);
         // update path in center of bounds[0, 0, mCircleDiameter, mCircleDiameter]
         updateCircleToLinePath(mBaseLinePath, mCircleDiameter, normalizeTime);
         // offset the path to the place of circle
@@ -627,7 +643,7 @@ public class GADownloadingView extends View {
     private void drawProgress(Canvas canvas, float progress) {
         float normalizedProgress = progress / FULL_PROGRESS;
         drawProgressLinePath(canvas, normalizedProgress, mBaseLineLen,
-                mBaseLineX, mBaseLineY, mProgressLineMaxHeight, DEFAULT_PROGRESS_LINE_LEFT_COLOR);
+                mBaseLineX, mBaseLineY, mProgressLineMaxHeight, mProgressLineColor);
         mLastArrowOffsetX = (int) (mProgressLinePathRectF.left - mArrowRectF.width() / 2
                 + mBaseLineLen * normalizedProgress);
         mLastArrowOffsetY = (int) (mProgressLinePathRectF.bottom - mArrowRectF.height());
@@ -661,12 +677,12 @@ public class GADownloadingView extends View {
             // first text is 100%, rotate angle is  0 to 90
             mLastValidProgressTextStr = FULL_PROGRESS_STR;
             angle = HALF_FULL_ANGLE * normalizedTime;
-            mProgressTextPaint.setColor(DEFAULT_PROGRESS_TEXT_COLOR);
+            mProgressTextPaint.setColor(mProgressTextColor);
         } else {
             // second text is done, rotate angle is  270 to 360
             mLastValidProgressTextStr = FULL_PROGRESS_DONE_STR;
             angle = HALF_FULL_ANGLE * normalizedTime + HALF_FULL_ANGLE;
-            mProgressTextPaint.setColor(DEFAULT_DONE_PROGRESS_TEXT_COLOR);
+            mProgressTextPaint.setColor(mDoneTextColor);
         }
         if (mCamera == null) {
             mCamera = new Camera();
@@ -684,7 +700,7 @@ public class GADownloadingView extends View {
         canvas.save();
         canvas.translate(mLastArrowOffsetX, mLastArrowOffsetY);
         canvas.concat(mArrowRotateMatrix);
-        mDefaultPaint.setColor(DEFAULT_ARROW_COLOR);
+        mDefaultPaint.setColor(mArrowColor);
         canvas.drawPath(mArrowPath, mDefaultPaint);
 
         // str is changed, need re-calculate bounds
@@ -700,7 +716,7 @@ public class GADownloadingView extends View {
 
         // the FULL_NORMALIZED_TIME is means, no need bounce
         drawProgressLinePath(canvas, FULL_NORMALIZED_TIME, mBaseLineLen,
-                mBaseLineX, mBaseLineY, mProgressLineMaxHeight, DEFAULT_PROGRESS_LINE_LEFT_COLOR);
+                mBaseLineX, mBaseLineY, mProgressLineMaxHeight, mProgressLineColor);
     }
 
 
@@ -714,14 +730,14 @@ public class GADownloadingView extends View {
         mLastArrowOffsetX = (int) (adjustBaseLineX + adjustLen - mArrowRectF.width() / 2);
         mLastArrowOffsetY = (int) (mBaseLineY - mArrowRectF.height());
 
-        mBaseLinePaint.setColor(DEFAULT_PROGRESS_LINE_LEFT_COLOR);
+        mBaseLinePaint.setColor(mProgressLineColor);
         canvas.drawLine(adjustBaseLineX, mBaseLineY, adjustBaseLineX + adjustLen, mBaseLineY, mBaseLinePaint);
         drawArrowTrans(canvas, mLastArrowOffsetX, mLastArrowOffsetY, DONE_LINE_PACK_UP_ARROW_ANGLE);
     }
 
     private void drawDoneLinePackUpArrowShake(Canvas canvas, float angle) {
         int adjustLen = DONE_LINE_PACK_UP_ARROW_SHAKE_BASE_POINT_DIAMETER;
-        mBaseLinePaint.setColor(DEFAULT_PROGRESS_LINE_LEFT_COLOR);
+        mBaseLinePaint.setColor(mProgressLineColor);
         canvas.drawLine(mBaseLineCenterX, mBaseLineY, mBaseLineCenterX + adjustLen, mBaseLineY, mBaseLinePaint);
         drawArrowTrans(canvas,
                 (int) (mBaseLineCenterX - mArrowRectF.width() / 2),
@@ -732,7 +748,7 @@ public class GADownloadingView extends View {
                                       float dialogToArrowNormalizeTime, float arrowUpDownFactor) {
         // draw bg circle
         float circleRadius = mCircleRadius * circleScaleFactor;
-        mDefaultPaint.setColor(DEFAULT_LOADING_CIRCLE_BG_COLOR);
+        mDefaultPaint.setColor(mLoadingCircleBackColor);
         canvas.drawCircle(mCircleRectF.centerX(), mCircleRectF.centerY(), circleRadius, mDefaultPaint);
 
         // draw arrow
@@ -748,7 +764,7 @@ public class GADownloadingView extends View {
                 * (1 - dialogToArrowNormalizeTime * 0.5 + arrowUpDownFactor));
         canvas.save();
         canvas.translate(offsetArrowX, offsetArrowY);
-        mDefaultPaint.setColor(DEFAULT_ARROW_COLOR);
+        mDefaultPaint.setColor(mArrowColor);
         canvas.drawPath(mArrowPath, mDefaultPaint);
         canvas.restore();
     }
@@ -763,7 +779,7 @@ public class GADownloadingView extends View {
             offsetArrow = (int) (offsetLine * (FULL_NORMALIZED_PROGRESS - normalizedProgress) / HALF_NORMALIZED_PROGRESS);
         }
         drawProgressLinePath(canvas, normalizedProgress, mBaseLineLen,
-                mBaseLineX, mBaseLineY, mProgressLineMaxHeight + offsetLine, DEFAULT_LOADING_LINE_COLOR);
+                mBaseLineX, mBaseLineY, mProgressLineMaxHeight + offsetLine, mLoadingLineColor);
         drawBombPoint(canvas, mFailedBombAnimatorPer, (int) mProgressValue, mProgressLineMaxHeight);
 
         if (!mLastValidProgressTextStr.equals(FAILED_PROGRESS_STR)) {
@@ -790,7 +806,7 @@ public class GADownloadingView extends View {
     private void drawFailedRopeOscillation(Canvas canvas, float ropeOsillFactor) {
         updateLineOscillationPath(ropeOsillFactor, mBaseLineLen,
                 mBaseLineX, mBaseLineY, mLineOscillationMaxHeight, mHalfBaseLineLen);
-        mBaseLinePaint.setColor(DEFAULT_LOADING_LINE_COLOR);
+        mBaseLinePaint.setColor(mLoadingLineColor);
         canvas.drawPath(mOscillationLinePath, mBaseLinePaint);
     }
 
@@ -815,7 +831,7 @@ public class GADownloadingView extends View {
                 (int) (mCircleRadius * mChangeArrowToDialogParamters[1]),
                 (int) (mCircleRadius * mChangeArrowToDialogParamters[2]),
                 (int) (mCircleRadius * mChangeArrowToDialogParamters[3]));
-        mDefaultPaint.setColor(DEFAULT_ARROW_COLOR);
+        mDefaultPaint.setColor(mArrowColor);
         canvas.save();
         canvas.translate(offsetArrowX, offsetArrowY);
         canvas.concat(mArrowRotateMatrix);
@@ -825,14 +841,14 @@ public class GADownloadingView extends View {
 
     private void drawFailedLinePackUp(Canvas canvas, float packUpFactor) {
         int halfLineLen = (int) (mHalfBaseLineLen * packUpFactor);
-        mBaseLinePaint.setColor(DEFAULT_LOADING_LINE_COLOR);
+        mBaseLinePaint.setColor(mLoadingLineColor);
         canvas.drawLine(mLoadingViewCenterX - halfLineLen, mLoadingViewCenterY,
                 mLoadingViewCenterX + halfLineLen, mLoadingViewCenterY, mBaseLinePaint);
     }
 
     private void drawFailedCircleScale(Canvas canvas, float scaleFactor) {
         int circleRadius = (int) (mCircleRadius * scaleFactor);
-        mDefaultPaint.setColor(DEFAULT_LOADING_CIRCLE_BG_COLOR);
+        mDefaultPaint.setColor(mLoadingCircleBackColor);
         canvas.drawCircle(mCircleRectF.centerX(), mCircleRectF.centerY(), circleRadius, mDefaultPaint);
     }
 
@@ -1121,7 +1137,7 @@ public class GADownloadingView extends View {
         // draw bg circle
         canvas.save();
         canvas.scale(scaleFactor, scaleFactor, mCircleRectF.centerX(), mCircleRectF.centerY());
-        mDefaultPaint.setColor(DEFAULT_LOADING_CIRCLE_BG_COLOR);
+        mDefaultPaint.setColor(mLoadingCircleBackColor);
         canvas.drawCircle(mCircleRectF.centerX(), mCircleRectF.centerY(), mCircleRadius, mDefaultPaint);
 
         // draw arrow
@@ -1130,7 +1146,7 @@ public class GADownloadingView extends View {
         // translate the canvas  causes the center point of the arrow to coincide with the center point of the circle
         canvas.translate(mCircleRectF.centerX() - mArrowRectF.width() / 2 * scaleFactor,
                 mCircleRectF.centerY() - mArrowRectF.height() / 2 * scaleFactor);
-        mDefaultPaint.setColor(DEFAULT_ARROW_COLOR);
+        mDefaultPaint.setColor(mArrowColor);
         canvas.drawPath(mArrowPath, mDefaultPaint);
         canvas.restore();
     }
@@ -1140,7 +1156,7 @@ public class GADownloadingView extends View {
         canvas.save();
         canvas.scale(scalingFactor, scalingFactor, mCircleRectF.centerX(), mCircleRectF.centerY());
         int layoutCont = canvas.saveLayer(mCircleRectF, mDefaultPaint, Canvas.ALL_SAVE_FLAG);
-        mDefaultPaint.setColor(DEFAULT_LOADING_CIRCLE_BG_COLOR);
+        mDefaultPaint.setColor(mLoadingCircleBackColor);
         canvas.drawCircle(mCircleRectF.centerX(), mCircleRectF.centerY(), mCircleRadius, mDefaultPaint);
 
         mDefaultPaint.setXfermode(mXfermode);
@@ -1156,7 +1172,7 @@ public class GADownloadingView extends View {
         // translate the canvas  causes the center point of the arrow to coincide with the center point of the circle
         canvas.translate(mCircleRectF.centerX() - mArrowRectF.width() / 2 * scalingFactor,
                 mCircleRectF.centerY() - mArrowRectF.height() / 2 * scalingFactor);
-        mDefaultPaint.setColor(DEFAULT_ARROW_COLOR);
+        mDefaultPaint.setColor(mArrowColor);
         canvas.drawPath(mArrowPath, mDefaultPaint);
         canvas.restore();
     }
@@ -1178,7 +1194,7 @@ public class GADownloadingView extends View {
             mArrowRotateMatrix.reset();
         }
 
-        mDefaultPaint.setColor(DEFAULT_ARROW_COLOR);
+        mDefaultPaint.setColor(mArrowColor);
         canvas.save();
         canvas.translate(offsetX, offsetY);
         // arrow shake
@@ -1242,7 +1258,7 @@ public class GADownloadingView extends View {
                     * (1 - normalizeProgress) / HALF_NORMALIZED_PROGRESS) + baseLineY;
         }
         // draw right part first
-        mBaseLinePaint.setColor(DEFAULT_LOADING_LINE_COLOR);
+        mBaseLinePaint.setColor(mLoadingLineColor);
         canvas.drawLine(middlePointX, middlePointY, baseLineX + baselineLen,
                 baseLineY, mBaseLinePaint);
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gastudio="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/holo_blue_light"
@@ -7,8 +8,15 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
+
     <com.gastudio.gadownloading.ui.GADownloadingView
         android:id="@+id/downloading"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        gastudio:arrow_color="#e60012"
+        gastudio:progress_text_color="#0000ff"
+        gastudio:loading_circle_back_color="#00ff00"
+        gastudio:loading_line_color="#ffffff"
+        gastudio:progress_line_color="#000000"
+        gastudio:done_text_color="#ffffff" />
 </RelativeLayout>

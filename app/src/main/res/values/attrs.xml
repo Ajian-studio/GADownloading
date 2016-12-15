@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="GADownloadingView">
+
+        <attr name="arrow_color" format="color" />
+        <attr name="loading_circle_back_color" format="color" />
+        <attr name="loading_line_color" format="color" />
+        <attr name="progress_line_color" format="color" />
+        <attr name="progress_text_color" format="color" />
+        <attr name="done_text_color" format="color" />
+    </declare-styleable>
+</resources>
