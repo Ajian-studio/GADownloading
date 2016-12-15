@@ -5,7 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-
+/**
+ * author: GAStudio
+ * qq:1935400187
+ * 技术交流qq群:277582728
+ */
 public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

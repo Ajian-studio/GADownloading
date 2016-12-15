@@ -6,6 +6,11 @@ import android.os.Handler;
 
 import com.gastudio.gadownloading.ui.GADownloadingView;
 
+/**
+ * author: GAStudio
+ * qq:1935400187
+ * 技术交流qq群:277582728
+ */
 public class FailedActivity extends Activity {
 
     private static final int UPDATE_PROGRESS_DELAY = 500;

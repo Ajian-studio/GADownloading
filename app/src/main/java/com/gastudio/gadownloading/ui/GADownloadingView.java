@@ -24,11 +24,14 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+/**
+ * author: GAStudio
+ * qq:1935400187
+ * 技术交流qq群:277582728
+ */
 public class GADownloadingView extends View {
 
     public static final int ZERO_PROGRESS = 0;
