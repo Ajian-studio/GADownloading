@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:gastudio="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,10 +10,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/gastudio_icon" />
+
     <Button
         android:id="@+id/show_success"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/image"
+        android:layout_marginTop="10dp"
         android:text="@string/show_success_loading" />
 
     <Button
@@ -21,4 +33,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/show_success"
         android:text="@string/show_failed_loading" />
+
+    <com.gastudio.gadownloading.ui.GADownloadingView
+        android:id="@+id/ga_downloading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/show_failed"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="QQ:1935400187(技术群:277582728)"
+        android:textColor="@android:color/white" />
 </RelativeLayout>

@@ -1709,11 +1709,11 @@ public class GADownloadingView extends View {
         mIsFailed = true;
     }
 
-    static public int dipToPx(Context context, int dip) {
+    private int dipToPx(Context context, int dip) {
         return (int) (dip * getScreenDensity(context) + 0.5f);
     }
 
-    static public float getScreenDensity(Context context) {
+    private float getScreenDensity(Context context) {
         try {
             DisplayMetrics dm = new DisplayMetrics();
             ((WindowManager) context.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay()
@@ -1723,4 +1723,5 @@ public class GADownloadingView extends View {
             return DisplayMetrics.DENSITY_DEFAULT;
         }
     }
+
 }
