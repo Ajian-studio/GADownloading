@@ -68,9 +68,7 @@ public class GADownloadingView extends View {
     private static final int BEFORE_PROGRESS_CIRCLE_TO_LINE_DURATION = 150;
     private static final int BEFORE_PROGRESS_ARROW_MOVE_AND_LINE_OSCILL = 800;
 
-    private static final float CIRCLE_TO_LINE_SEASON_1 = 0.4f;
-    private static final float CIRCLE_TO_LINE_SEASON_2 = 0.8f;
-    private static final float CIRCLE_TO_LINE_SEASON_3 = 1f;
+    private static final float[] CIRCLE_TO_LINE_SEASONS = new float[]{0, 0.4f, 0.8f, 1f};
     private static final float[] CIRCLE_TO_LINE_WIDTH_FACTOR = new float[]{1f, 1.2f, 2.4f, 3.45f};
     private static final float[] CIRCLE_TO_LINE_HEIGHT_FACTOR = new float[]{1f, 0.73f, 0.36f, 0f};
     private static final float[] CIRCLE_TO_LINE_FST_CON_X_FACTOR = new float[]{-0.65f, 0.18f, 0.72f, 1.04f};
@@ -1044,6 +1042,7 @@ public class GADownloadingView extends View {
     /**
      * Assumed the circle height is h, width is w, we can obtain the following content:
      * this animation have four State:
+     *
      * State 1: Circle to special line 1
      * width: w -> 1.2w
      * height: w -> 0.73w
@@ -1051,13 +1050,15 @@ public class GADownloadingView extends View {
      * firstConYFactor: 0 to 0.036w
      * SecondConXFactor: -0.65w to 0.06w
      * SecondConYFactor: 1w to 0.73w
+     *
      * State 2: line 1 to line 2
      * width: 1.2w -> 2.4w
      * height: w -> 0.36w
-     * firstConXFactor: 0.73w to 0.36w
+     * firstConXFactor: 0.18w to 0.72w
      * firstConYFactor: 0.036w to 0
      * SecondConXFactor: 0.06w to 0.72w
      * SecondConYFactor: 0.73w to 0.36w
+     *
      * State 3: line 2 to line 3
      * width: 2.4w -> 2.4w
      * height: 0.36w -> 0
@@ -1073,16 +1074,16 @@ public class GADownloadingView extends View {
         }
         int index = 0;
         float adjustNormalizedTime = 0;
-        if (normalizedTime <= CIRCLE_TO_LINE_SEASON_1) {
-            adjustNormalizedTime = normalizedTime / CIRCLE_TO_LINE_SEASON_1;
-        } else if (normalizedTime < CIRCLE_TO_LINE_SEASON_2) {
+        if (normalizedTime <= CIRCLE_TO_LINE_SEASONS[1]) {
+            adjustNormalizedTime = normalizedTime / CIRCLE_TO_LINE_SEASONS[1];
+        } else if (normalizedTime < CIRCLE_TO_LINE_SEASONS[2]) {
             index = 1;
-            adjustNormalizedTime = (normalizedTime - CIRCLE_TO_LINE_SEASON_1)
-                    / (CIRCLE_TO_LINE_SEASON_2 - CIRCLE_TO_LINE_SEASON_1);
+            adjustNormalizedTime = (normalizedTime - CIRCLE_TO_LINE_SEASONS[1])
+                    / (CIRCLE_TO_LINE_SEASONS[2] - CIRCLE_TO_LINE_SEASONS[1]);
         } else {
             index = 2;
-            adjustNormalizedTime = (normalizedTime - CIRCLE_TO_LINE_SEASON_2)
-                    / (CIRCLE_TO_LINE_SEASON_3 - CIRCLE_TO_LINE_SEASON_2);
+            adjustNormalizedTime = (normalizedTime - CIRCLE_TO_LINE_SEASONS[2])
+                    / (CIRCLE_TO_LINE_SEASONS[3] - CIRCLE_TO_LINE_SEASONS[2]);
         }
 
         // the path bounds width
@@ -1092,7 +1093,7 @@ public class GADownloadingView extends View {
 
         // the distance of cubic line1' x1 to cubic line2's x2
         int adjustBoundWidth = boundWidth;
-        if (normalizedTime <= CIRCLE_TO_LINE_SEASON_1) {
+        if (normalizedTime <= CIRCLE_TO_LINE_SEASONS[1]) {
             adjustBoundWidth = (int) (boundWidth * adjustNormalizedTime);
         }
 
