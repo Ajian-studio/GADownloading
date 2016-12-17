@@ -9,9 +9,12 @@
 #### 实现效果图如下：<br>
 
 成功状态：<br>
+
 ![](https://github.com/Ajian-studio/GADownloading/raw/master/raw/my_loading_view_success.gif) <br>
 <br>
+
 失败状态：<br>
+
 ![](https://github.com/Ajian-studio/GADownloading/raw/master/raw/my_loading_view_failed.gif) <br>
 <br>
 目前实现了原型中99%左右的内容；
@@ -38,7 +41,7 @@ mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
 #### 3.核心接口：
 
 1.performAnimation();<br>
-执行动画，包括背景和下载箭头抖动部分、背景镂空、圆变换为进度条、进度条抖动、下载箭头变换为承载文字的线框；<br>
+启动动画，包括背景和下载箭头抖动部分、背景镂空、圆变换为进度条、进度条抖动、下载箭头变换为承载文字的线框；<br>
 
 2.updateProgress(int progress)；<br>
 更新进度；<br>
