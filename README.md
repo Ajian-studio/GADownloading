@@ -23,7 +23,6 @@
 1.整体实现均使用色值，未使用任何图片资源，核心色彩都已添加自定义属性；<br>
 2.整体宽高自行定义，内部元素均根据整体宽高自动缩放适应，但由于整体效果限制，建议宽度不要低于100dp，否则效果不佳；<br>
 
-<br>
 ## 二、如何使用:<br>
 
 #### 1.在布局文件中添加GADownloadingView:<br>
@@ -65,7 +64,7 @@ mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
         <attr name="done_text_color" format="color" />
     </declare-styleable>
 
-```<br>
+```
 
 5.自定义属性使用方式：<br>
 
@@ -75,7 +74,7 @@ mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
     xmlns:gastudio="http://schemas.android.com/apk/res-auto"
     ... ...
     />
-```<br>
+```
 添加自定义属性<br>
 ```
     <com.gastudio.gadownloading.ui.GADownloadingView
