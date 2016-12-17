@@ -37,9 +37,9 @@
 ```
 
 #### 2.在Activity中找到组件：
-
+```
 mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
-
+```
 #### 3.核心接口：
 
 1.performAnimation()：<br>
@@ -87,3 +87,6 @@ mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
         gastudio:progress_line_color="@android:color/white"
         gastudio:progress_text_color="@android:color/white" />
 ```
+
+最后，如果你觉得还不错，欢迎Star！<br>
+欢迎加GAStudio交流qq群: 277582728 ；<br>
