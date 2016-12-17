@@ -11,7 +11,6 @@
 成功状态：<br>
 
 ![](https://github.com/Ajian-studio/GADownloading/raw/master/raw/my_loading_view_success.gif) <br>
-<br>
 
 失败状态：<br>
 
@@ -22,6 +21,7 @@
 注：<br>
 1.整体实现均使用色值，未使用任何图片资源，核心色彩都已添加自定义属性；<br>
 2.整体宽高自行定义，内部元素均根据整体宽高自动缩放适应，但由于整体效果限制，建议宽度不要低于100dp，否则效果不佳；<br>
+
 
 ## 二、如何使用:<br>
 
@@ -70,9 +70,9 @@ mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
 
 添加自定义属性命名空间：<br>
 ```
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:gastudio="http://schemas.android.com/apk/res-auto"
-    ... ...
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:gastudio="http://schemas.android.com/apk/res-auto"
+         ... ...
     />
 ```
 添加自定义属性<br>
