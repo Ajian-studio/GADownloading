@@ -33,8 +33,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_below="@+id/show_failed"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="15dp" />
+    android:layout_centerHorizontal="true" />
 ```
 
 #### 2.在Activity中找到组件：
@@ -81,9 +80,6 @@ mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
         android:id="@+id/ga_downloading"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/show_failed"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
         gastudio:arrow_color="@android:color/white"
         gastudio:done_text_color="@android:color/white"
         gastudio:loading_circle_back_color="@android:color/white"
