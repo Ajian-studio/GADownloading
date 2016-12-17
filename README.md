@@ -89,4 +89,6 @@ mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
 ```
 
 最后，如果你觉得还不错，欢迎Star！<br>
-欢迎加GAStudio交流qq群: 277582728 ；<br>
+
+欢迎加入GAStudio交流qq群: 277582728 ；<br>
+
