@@ -657,6 +657,7 @@ public class GADownloadingView extends View {
         int textBaseLineX = (int) (mLastArrowOffsetX
                 + (mArrowRectF.width() - mProgressTextRect.width()) / 2);
         int textBastLineY = mLastArrowOffsetY + offsetHeight - mProgressTextRect.top;
+        mProgressTextPaint.setColor(mProgressTextColor);
         canvas.drawText(mLastValidProgressTextStr, textBaseLineX, textBastLineY
                 , mProgressTextPaint);
     }
