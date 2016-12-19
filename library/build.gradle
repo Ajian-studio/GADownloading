@@ -1,15 +1,19 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+
+// JitPack Maven
+apply plugin: 'com.github.dcendents.android-maven'
+// Your Group
+group='com.github.Ajian-studio'
 
 android {
     compileSdkVersion 23
     buildToolsVersion "23.0.1"
+
     defaultConfig {
-        applicationId "com.gastudio.gadownloading"
         minSdkVersion 14
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {

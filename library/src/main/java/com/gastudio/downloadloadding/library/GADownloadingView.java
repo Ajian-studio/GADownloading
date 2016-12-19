@@ -1,4 +1,4 @@
-package com.gastudio.gadownloading.ui;
+package com.gastudio.downloadloadding.library;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -24,8 +24,6 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-
-import com.gastudio.gadownloading.R;
 
 import java.util.ArrayList;
 import java.util.List;
