@@ -1,6 +1,3 @@
 <resources>
     <string name="app_name">GADownloading</string>
-    <string name="show_success_loading">show success loading</string>
-    <string name="show_failed_loading">show failed loading</string>
-    <string name="show_custom_property_loading">show custom property loading</string>
 </resources>
