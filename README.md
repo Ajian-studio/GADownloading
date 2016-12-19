@@ -24,11 +24,34 @@
 
 
 ## 二、如何使用:<br>
+### 1 获取项目资源
+获取项目资源的两种形式为：1）直接使用JitPack上的库 2）拷贝工程的的CADownloadingView及其他资源
+#### 1.1.直接使用JitPack上的库
 
-#### 1.在布局文件中添加GADownloadingView:<br>
+step 1 :在项目的build.gradle中加入如下代码：
+```
+allprojects {
+		repositories {
+			...
+            // add the follow code
+			maven { url 'https://jitpack.io' }
+		}
+	}
+```
+step 2 :在相应的模块的build.gradle中加入如下代码：
+```
+dependencies {
+	compile 'com.github.Ajian-studio:GADownloading:v1.0.2'
+}
 
 ```
-<com.gastudio.gadownloading.ui.GADownloadingView
+#### 1.2.拷贝工程的中的CADownloadingView及相应的attr.xml文件
+直接复制src/ui/CADownloadingView 及 res/values/attr.xml文件复制到相应的目录下
+
+### 2.在布局文件中添加GADownloadingView:<br>
+
+```
+<xxx.xxx.xxxx.GADownloadingView
     android:id="@+id/ga_downloading"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -36,22 +59,23 @@
     android:layout_centerHorizontal="true" />
 ```
 
-#### 2.在Activity中找到组件：
+### 3.在Activity中找到组件：
 ```
 mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
 ```
-#### 3.核心接口：
+### 4.核心接口：
 
-1.performAnimation()：<br>
+#### 4.1.performAnimation()：<br>
 启动动画，包括背景和下载箭头抖动部分、背景镂空、圆变换为进度条、进度条抖动、下载箭头变换为承载文字的线框；<br>
 
-2.updateProgress(int progress)：<br>
+#### 4.2.updateProgress(int progress)：<br>
 更新进度；<br>
 
-3.onFail()：<br>
+#### 4.3.onFail()：<br>
 下载失败、调用则执行失败部分动效；<br>
 
-4.自定义属性：<br>
+### 5.自定义属性：<br>
+#### 5.1 可更改属性 <br>
 ```
     <declare-styleable name="GADownloadingView">
 
@@ -65,7 +89,7 @@ mGADownloadingView = (GADownloadingView) findViewById(R.id.ga_downloading);
 
 ```
 
-5.自定义属性使用方式：<br>
+#### 5.2.自定义属性使用方式：<br>
 
 添加自定义属性命名空间：<br>
 ```
