@@ -27,7 +27,10 @@ Note: The document is divided into two parts, the first part of the Chinese docu
 
 ## 二、如何使用:<br>
 ### 1 获取项目资源
-获取项目资源的两种形式为：1）直接使用JitPack上的库 2）拷贝工程的的GADownloadingView及其他资源
+获取项目资源的两种形式为：<br>
+1).直接使用JitPack上的库； <br>
+2).拷贝工程的的GADownloadingView及其他资源；<br>
+
 #### 1.1.直接使用JitPack上的库
 
 step 1 :在项目的build.gradle中加入如下代码：
@@ -146,7 +149,10 @@ Note：<br>
 
 ## 2 How to Use:<br>
 ### 2.1 How To Obtain Project Resources
-The two forms of obtaining project resources are：1）Use libraries directly on JitPack 2）Copy the project's GADownloadingView and associated resources
+The two forms of obtaining project resources are：<br>
+1).Use libraries directly on JitPack；<br>
+2).Copy the project's GADownloadingView and associated resources；<br>
+
 #### 2.1.1 Use Libraries Directly On JitPack
 
 step 1. In the project build.gradle add the following code：
